@@ -1,0 +1,212 @@
+/* ===== AUTH PAGE LAYOUT ===== */
+.auth-body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-brown) 100%);
+}
+
+.auth-split-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ===== LEFT SIDE - BRANDING ===== */
+.auth-brand-side {
+    flex: 1;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-brand-side::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -200px;
+    right: -200px;
+}
+
+.brand-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+}
+
+.brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.brand-tagline {
+    font-size: 1.3rem;
+    color: var(--color-dark);
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+
+.brand-features {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+}
+
+.feature-item span:last-child {
+    font-size: 1.1rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+/* ===== RIGHT SIDE - FORM ===== */
+.auth-form-side {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+}
+
+.auth-form-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray-dark);
+    margin-bottom: 40px;
+}
+
+/* ===== AUTH FORM ===== */
+.auth-form .form-group {
+    margin-bottom: 25px;
+}
+
+.auth-form label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 8px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--color-tan);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    transition: all 0.2s;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 145, 72, 0.1);
+}
+
+.auth-form input::placeholder {
+    color: var(--color-gray-dark);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.auth-button:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 145, 72, 0.3);
+}
+
+/* ===== FOOTER LINKS ===== */
+.auth-footer {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--color-dark);
+}
+
+.auth-footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .auth-split-container {
+        flex-direction: column;
+    }
+    
+    .auth-brand-side {
+        padding: 40px;
+        min-height: 300px;
+    }
+    
+    .brand-logo {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-form-side {
+        padding: 40px 20px;
+    }
+    
+    .form-title {
+        font-size: 2rem;
+    }
+    
+    .brand-logo {
+        font-size: 2.5rem;
+    }
+}

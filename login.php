@@ -1,13 +1,11 @@
 <?php
 require_once 'config.php';
 
-// Check if already logged in
 if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
 }
 
-// Get error/success messages
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 $success = isset($_SESSION['success']) ? $_SESSION['success'] : '';
 unset($_SESSION['error']);
@@ -19,15 +17,35 @@ unset($_SESSION['success']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loafly - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="auth.css">
 </head>
-<body>
-    <h1 class="logo">Loafly</h1>
-    
-    <div class="main-content">
-        <div class="auth-container">
-            <div class="auth-card">
-                <h2 class="auth-title">Login</h2>
+<body class="auth-body">
+    <div class="auth-split-container">
+        <!-- Left Side - Branding -->
+        <div class="auth-brand-side">
+            <div class="brand-content">
+                <h1 class="brand-logo">Loafly</h1>
+                <p class="brand-tagline">Freshly baked happiness, delivered daily</p>
+                <div class="brand-features">
+                    <div class="feature-item">
+                        <span>Artisan Pastries</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Baked Fresh Daily</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Made with Love</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Form -->
+        <div class="auth-form-side">
+            <div class="auth-form-container">
+                <h2 class="form-title">Welcome Back</h2>
+                <p class="form-subtitle">Sign in to your account to continue</p>
                 
                 <?php if ($error): ?>
                     <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
@@ -37,10 +55,10 @@ unset($_SESSION['success']);
                     <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
                 <?php endif; ?>
                 
-                <form id="loginForm" action="login_process.php" method="POST">
+                <form action="login_process.php" method="POST" class="auth-form">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
                     </div>
                     
                     <div class="form-group">
@@ -51,24 +69,9 @@ unset($_SESSION['success']);
                     <button type="submit" class="auth-button">Sign In</button>
                 </form>
                 
-                <div class="auth-link">
-                    <a href="signup.php">Create an account</a>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="signup.php">Sign up</a></p>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Pastry Footer -->
-    <div class="pastry-footer">
-        <div class="pastry-images">
-            <div class="pastry-image-container">
-                <img src="pastry1.png" alt="Pastry 1" class="pastry-image pastry1">
-            </div>
-            <div class="pastry-image-container">
-                <img src="pastry2.png" alt="Pastry 2" class="pastry-image pastry2">
-            </div>
-            <div class="pastry-image-container">
-                <img src="pastry3.png" alt="Pastry 3" class="pastry-image pastry3">
             </div>
         </div>
     </div>
