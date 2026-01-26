@@ -17,8 +17,8 @@ unset($_SESSION['success']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loafly - Login</title>
-    <link rel="stylesheet" href="shared.css">
-    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body class="auth-body">
     <div class="auth-split-container">

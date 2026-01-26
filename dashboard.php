@@ -54,25 +54,6 @@ $cart_stmt->close();
                 <a href="#menu" class="hero-cta">Browse Menu</a>
             </section>
             
-            <!-- Special Offer Card -->
-            <section class="promo-section">
-                <div class="promo-card">
-                    <div class="promo-content">
-                        <div class="promo-badge">Limited Time Offer</div>
-                        <h3 class="promo-title">Weekend Delight Special</h3>
-                        <p class="promo-description">Buy any 3 pastries and get your 4th one absolutely free! Valid Saturday & Sunday only.</p>
-                        <div class="promo-footer">
-                            <span class="promo-code">Use code: <strong>WEEKEND4</strong></span>
-                            <span class="promo-validity">Valid until Sunday, 11:59 PM</span>
-                        </div>
-                    </div>
-                    <div class="promo-visual">
-                        <div class="promo-circle"></div>
-                        <span class="promo-emoji">🎉</span>
-                    </div>
-                </div>
-            </section>
-            
             <!-- Menu Section -->
             <section class="menu-section" id="menu">
                 <h3 class="section-title">Today's Favorites</h3>
