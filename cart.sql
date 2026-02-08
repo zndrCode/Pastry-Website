@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -71,3 +72,15 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+=======
+CREATE TABLE `cart` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT, 
+    `user_id` INT(11) NOT NULL, 
+    `item_name` VARCHAR(255) NOT NULL, 
+    `item_price` DECIMAL(10, 2) NOT NULL, 
+    `quantity` INT(11) NOT NULL DEFAULT 1,
+    `added_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`), 
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+>>>>>>> 7c1f8d1e2f4ad1dde80e3a9371d719c74aeb5be7
