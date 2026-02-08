@@ -17,6 +17,10 @@ $cart_result = $cart_stmt->get_result();
 $cart_data = $cart_result->fetch_assoc();
 $cart_count = $cart_data['total'] ?? 0;
 $cart_stmt->close();
+
+// Fetch all products from database (only in-stock items)
+$products_query = "SELECT * FROM products WHERE quantity > 0 ORDER BY created_at DESC";
+$products_result = $conn->query($products_query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,60 +63,76 @@ $cart_stmt->close();
                 <h3 class="section-title">Today's Favorites</h3>
                 <p class="section-subtitle">Our most popular handcrafted pastries</p>
                 
-                <div class="pastry-cards">
-                    <!-- Card 1 -->
-                    <div class="pastry-card">
-                        <div class="card-badge">Best Seller</div>
-                        <div class="card-image-wrapper">
-                            <img src="pastry1.png" alt="Classic Croissant" class="card-image">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Classic Croissant</h3>
-                            <p class="card-description">Buttery, flaky layers of perfection. Baked fresh every morning with premium French butter.</p>
-                            <div class="card-footer">
-                                <span class="card-price">$3.50</span>
-                                <button class="card-button add-to-cart" data-name="Classic Croissant" data-price="3.50">
-                                    Add to Cart
-                                </button>
+                <?php if ($products_result->num_rows > 0): ?>
+                    <div class="pastry-cards">
+                        <?php 
+                        $card_index = 0;
+                        while ($product = $products_result->fetch_assoc()): 
+                            $card_index++;
+                            // Determine badge based on stock level
+                            $show_badge = false;
+                            $badge_text = '';
+                            $badge_class = '';
+                            
+                            if ($card_index === 1) {
+                                $show_badge = true;
+                                $badge_text = 'Best Seller';
+                                $badge_class = '';
+                            } elseif ($product['quantity'] <= 5) {
+                                $show_badge = true;
+                                $badge_text = 'Low Stock';
+                                $badge_class = 'low-stock';
+                            } elseif ($card_index === 2) {
+                                $show_badge = true;
+                                $badge_text = 'New';
+                                $badge_class = 'new';
+                            }
+                            
+                            // Use uploaded image if available, otherwise use placeholder
+                            if (!empty($product['image_url']) && file_exists($product['image_url'])) {
+                                $image_url = htmlspecialchars($product['image_url']);
+                            } else {
+                                $image_url = 'pastry' . (($card_index % 3) + 1) . '.png';
+                            }
+                        ?>
+                            <div class="pastry-card">
+                                <?php if ($show_badge): ?>
+                                    <div class="card-badge <?php echo $badge_class; ?>"><?php echo $badge_text; ?></div>
+                                <?php endif; ?>
+                                
+                                <div class="card-image-wrapper">
+                                    <img src="<?php echo $image_url; ?>" 
+                                         alt="<?php echo htmlspecialchars($product['name']); ?>" 
+                                         class="card-image">
+                                </div>
+                                
+                                <div class="card-content">
+                                    <h3 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h3>
+                                    <p class="card-description"><?php echo htmlspecialchars($product['description']); ?></p>
+                                    
+                                    <div class="card-footer">
+                                        <div class="price-stock">
+                                            <span class="card-price">$<?php echo number_format($product['price'], 2); ?></span>
+                                            <span class="stock-info"><?php echo $product['quantity']; ?> available</span>
+                                        </div>
+                                        <button class="card-button add-to-cart" 
+                                                data-name="<?php echo htmlspecialchars($product['name']); ?>" 
+                                                data-price="<?php echo $product['price']; ?>">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        <?php endwhile; ?>
                     </div>
-                    
-                    <!-- Card 2 -->
-                    <div class="pastry-card">
-                        <div class="card-badge new">New</div>
-                        <div class="card-image-wrapper">
-                            <img src="pastry2.png" alt="Sugar Danish" class="card-image">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Sugar Danish</h3>
-                            <p class="card-description">Sweet and tender pastry dusted with powdered sugar and filled with vanilla cream.</p>
-                            <div class="card-footer">
-                                <span class="card-price">$4.00</span>
-                                <button class="card-button add-to-cart" data-name="Sugar Danish" data-price="4.00">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
+                <?php else: ?>
+                    <!-- Empty State -->
+                    <div class="empty-products">
+                        <div class="empty-icon">🥐</div>
+                        <h3>No Products Available</h3>
+                        <p>Check back soon! Our bakers are working on new delicious treats.</p>
                     </div>
-                    
-                    <!-- Card 3 -->
-                    <div class="pastry-card">
-                        <div class="card-image-wrapper">
-                            <img src="pastry3.png" alt="Pastry Box" class="card-image">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Baker's Choice Box</h3>
-                            <p class="card-description">A curated selection of our chef's favorites. Perfect for sharing or treating yourself!</p>
-                            <div class="card-footer">
-                                <span class="card-price">$12.00</span>
-                                <button class="card-button add-to-cart" data-name="Baker's Choice Box" data-price="12.00">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </section>
             
             <!-- About Section -->

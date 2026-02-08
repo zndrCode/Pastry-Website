@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validation
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Please fill in all fields";
-        header("Location: login.php");
+        header("Location: admin_login.php");
         exit();
     }
     
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // Verify password
         if (password_verify($password, $user['password'])) {
-            // Password correct - check if this is an admin trying to use customer login
+            // Password correct - now check if user is admin
             
             // Method 1: Check by user_id (user_id = 1 is admin)
             $is_admin = ($user['id'] == 1);
@@ -40,31 +40,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $admin_check->close();
             */
             
-            // Redirect admins to their dedicated login page
+            // IMPORTANT: Only allow admin users to login through admin portal
             if ($is_admin) {
-                $_SESSION['error'] = "Please use the admin login page.";
-                header("Location: login.php");
+                // Create admin session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_name'] = $user['full_name'];
+                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['is_admin'] = true;
+                
+                // Redirect to admin dashboard
+                header("Location: admin_dashboard.php");
+                exit();
+            } else {
+                // Valid credentials but not an admin
+                $_SESSION['error'] = "Access denied. This portal is for administrators only.";
+                header("Location: admin_login.php");
                 exit();
             }
-            
-            // Create customer session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['full_name'];
-            $_SESSION['user_email'] = $user['email'];
-            $_SESSION['is_admin'] = false;
-            
-            // Redirect to customer dashboard
-            header("Location: dashboard.php");
-            exit();
         } else {
-            $_SESSION['error'] = "Invalid email or password";
+            $_SESSION['error'] = "Invalid credentials";
         }
     } else {
-        $_SESSION['error'] = "Invalid email or password";
+        $_SESSION['error'] = "Invalid credentials";
     }
     
     $stmt->close();
-    header("Location: login.php");
+    header("Location: admin_login.php");
     exit();
 }
 

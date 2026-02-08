@@ -71,6 +71,7 @@ unset($_SESSION['success']);
                 
                 <div class="auth-footer">
                     <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+                    <p>Administrator? <a href="admin_login.php">Admin Login</a></p>
                     <p>Go back? <a href="index.php">Yes</a></p>
                 </div>
             </div>

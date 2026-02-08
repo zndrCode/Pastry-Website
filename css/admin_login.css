@@ -1,0 +1,313 @@
+/* ===== ADMIN LOGIN PAGE ===== */
+.admin-login-body {
+    background: linear-gradient(135deg, #1C1612 0%, #403726 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background pattern */
+.admin-login-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 145, 72, 0.03) 35px, rgba(255, 145, 72, 0.03) 70px);
+    pointer-events: none;
+}
+
+.admin-login-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-tan);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    transition: all 0.2s;
+    padding: 0.5rem;
+}
+
+.back-link:hover {
+    color: var(--color-primary);
+    transform: translateX(-5px);
+}
+
+/* ===== LOGIN CARD ===== */
+.admin-login-card {
+    background: var(--color-brown);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 145, 72, 0.1);
+    border: 1px solid rgba(255, 145, 72, 0.2);
+}
+
+/* ===== HEADER ===== */
+.admin-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.admin-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.admin-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-cream);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.admin-subtitle {
+    color: var(--color-tan);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ===== FORM ===== */
+.admin-form {
+    margin-bottom: 2rem;
+}
+
+.admin-form .form-group {
+    margin-bottom: 1.75rem;
+}
+
+.admin-form label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-cream);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.label-icon {
+    font-size: 1.1rem;
+}
+
+.admin-form input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background-color: var(--color-dark);
+    border: 2px solid rgba(255, 145, 72, 0.2);
+    border-radius: 10px;
+    color: var(--color-cream);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+}
+
+.admin-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: rgba(28, 22, 18, 0.8);
+    box-shadow: 0 0 0 4px rgba(255, 145, 72, 0.1);
+    transform: translateY(-2px);
+}
+
+.admin-form input::placeholder {
+    color: var(--color-gray-dark);
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.admin-login-btn {
+    width: 100%;
+    padding: 1.125rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    color: var(--color-white);
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 12px rgba(255, 145, 72, 0.3);
+}
+
+.admin-login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 145, 72, 0.4);
+}
+
+.admin-login-btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-arrow {
+    font-size: 1.25rem;
+    transition: transform 0.3s;
+}
+
+.admin-login-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* ===== FOOTER ===== */
+.admin-footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 145, 72, 0.1);
+}
+
+.security-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--color-gray-dark);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: rgba(255, 145, 72, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 145, 72, 0.1);
+}
+
+.notice-icon {
+    font-size: 1.1rem;
+}
+
+.customer-link {
+    color: var(--color-tan);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.customer-link a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.customer-link a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+/* ===== BOTTOM FOOTER ===== */
+.login-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 145, 72, 0.1);
+}
+
+.login-footer p {
+    color: var(--color-gray-dark);
+    font-size: 0.85rem;
+}
+
+/* ===== ALERTS ===== */
+.admin-login-card .alert {
+    margin-bottom: 2rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-error {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.alert-error strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #f87171;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .admin-login-body {
+        padding: 1rem;
+    }
+
+    .admin-login-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .admin-title {
+        font-size: 1.75rem;
+    }
+
+    .admin-icon {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-login-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .admin-form input,
+    .admin-login-btn {
+        padding: 0.875rem 1rem;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.admin-login-card {
+    animation: fadeIn 0.4s ease-out;
+}
