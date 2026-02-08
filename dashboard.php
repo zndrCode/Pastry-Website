@@ -111,10 +111,7 @@ $products_result = $conn->query($products_query);
                                     <p class="card-description"><?php echo htmlspecialchars($product['description']); ?></p>
                                     
                                     <div class="card-footer">
-                                        <div class="price-stock">
-                                            <span class="card-price">$<?php echo number_format($product['price'], 2); ?></span>
-                                            <span class="stock-info"><?php echo $product['quantity']; ?> available</span>
-                                        </div>
+                                        <span class="card-price">$<?php echo number_format($product['price'], 2); ?></span>
                                         <button class="card-button add-to-cart" 
                                                 data-name="<?php echo htmlspecialchars($product['name']); ?>" 
                                                 data-price="<?php echo $product['price']; ?>">
@@ -134,60 +131,6 @@ $products_result = $conn->query($products_query);
                     </div>
                 <?php endif; ?>
             </section>
-            
-            <!-- About Section -->
-            <section class="about-section" id="about">
-                <div class="about-content">
-                    <h3 class="section-title">Our Story</h3>
-                    <p class="about-text">
-                        At Loafly, we believe that every pastry tells a story. Since 2020, we've been crafting artisan 
-                        baked goods using traditional techniques and the finest ingredients. Our bakers start before dawn 
-                        each day to ensure you enjoy the freshest, most delicious pastries possible.
-                    </p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">4+</span>
-                        <span class="stat-label">Years Baking</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Varieties</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">Happy Customers</span>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Contact Section -->
-            <section class="contact-section" id="contact">
-                <h3 class="section-title">Visit Our Bakery</h3>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div class="contact-icon">📍</div>
-                        <h4>Location</h4>
-                        <p>123 Baker Street<br>Tangub City, Northern Mindanao<br>Philippines</p>
-                        <a href="https://maps.google.com" target="_blank" class="contact-link">Get Directions →</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">🕐</div>
-                        <h4>Hours</h4>
-                        <p>Mon - Fri: 6:00 AM - 8:00 PM<br>Saturday: 7:00 AM - 9:00 PM<br>Sunday: 7:00 AM - 9:00 PM</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">📞</div>
-                        <h4>Contact</h4>
-                        <p>Phone: (123) 456-7890<br>Email: hello@loafly.com</p>
-                        <a href="tel:1234567890" class="contact-link">Call Us →</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
     
     <!-- Footer -->
     <footer class="site-footer">

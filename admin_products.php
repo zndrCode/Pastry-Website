@@ -185,13 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         // Move uploaded file
         if (move_uploaded_file($file_tmp, $upload_path)) {
-            // Resize image to optimize storage and performance
-            $resized = resizeImage($upload_path, 800, 600);
-            
-            if (!$resized) {
-                // If resize fails, log but continue (original image still uploaded)
-                error_log("Warning: Failed to resize image: " . $upload_path);
-            }
+            // Note: Automatic resizing is disabled (GD library not available)
+            // To enable: Install GD library and uncomment the line below
+            // $resized = resizeImage($upload_path, 800, 600);
             
             // Delete old image if updating and new image uploaded
             if ($action == 'edit' && !empty($existing_image) && file_exists($existing_image)) {

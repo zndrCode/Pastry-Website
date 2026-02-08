@@ -560,6 +560,7 @@
 }
 
 .stock-info {
+    display: none; /* Hidden for cleaner design */
     font-size: 0.8rem;
     color: var(--color-gray-dark);
     font-weight: 500;
