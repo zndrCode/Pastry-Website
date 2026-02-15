@@ -1,5 +1,6 @@
-Download zip file
-extract folder to xampp > htdocs
-change folder name to "loafly"
-Go to phpMyadmin, create database named "loafly_db"
-Copy database.sql code, paste it on "SQL" tab
+Download zip file<br>
+extract folder to xampp > htdocs<br>
+change folder name to "loafly"<br>
+Go to phpMyadmin, create database named "loafly_db"<br>
+Copy database.sql code, paste it on "SQL" tab<br>
+Same thing with users,product, and cart<br>
