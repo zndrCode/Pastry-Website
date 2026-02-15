@@ -18,28 +18,59 @@ if (!$is_admin) {
 // Handle delete action
 if (isset($_GET['delete'])) {
     $product_id = intval($_GET['delete']);
+    $admin_id = $_SESSION['user_id'];
     
-    // Get image path before deleting
-    $img_stmt = $conn->prepare("SELECT image_url FROM products WHERE id = ?");
-    $img_stmt->bind_param("i", $product_id);
-    $img_stmt->execute();
-    $img_result = $img_stmt->get_result();
-    $img_data = $img_result->fetch_assoc();
-    $img_stmt->close();
+    // Get product data before archiving
+    $product_stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+    $product_stmt->bind_param("i", $product_id);
+    $product_stmt->execute();
+    $product_result = $product_stmt->get_result();
+    $product_data = $product_result->fetch_assoc();
+    $product_stmt->close();
     
-    // Delete the product
-    $delete_stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
-    $delete_stmt->bind_param("i", $product_id);
-    if ($delete_stmt->execute()) {
-        // Delete the image file if it exists
-        if (!empty($img_data['image_url']) && file_exists($img_data['image_url'])) {
-            unlink($img_data['image_url']);
+    if ($product_data) {
+        // Archive the product (copy to archived_products table)
+        $archive_stmt = $conn->prepare("
+            INSERT INTO archived_products 
+            (original_product_id, name, description, price, quantity, image_url, deleted_by, original_created_at) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ");
+        $archive_stmt->bind_param(
+            "issdisis",
+            $product_data['id'],
+            $product_data['name'],
+            $product_data['description'],
+            $product_data['price'],
+            $product_data['quantity'],
+            $product_data['image_url'],
+            $admin_id,
+            $product_data['created_at']
+        );
+        
+        if ($archive_stmt->execute()) {
+            // Now delete from products table
+            $delete_stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+            $delete_stmt->bind_param("i", $product_id);
+            
+            if ($delete_stmt->execute()) {
+                // Note: We keep the image file for archive purposes
+                // Uncomment below if you want to delete the image file:
+                // if (!empty($product_data['image_url']) && file_exists($product_data['image_url'])) {
+                //     unlink($product_data['image_url']);
+                // }
+                
+                $_SESSION['success_message'] = "Product archived successfully!";
+            } else {
+                $_SESSION['error_message'] = "Error deleting product from active list.";
+            }
+            $delete_stmt->close();
+        } else {
+            $_SESSION['error_message'] = "Error archiving product.";
         }
-        $_SESSION['success_message'] = "Product deleted successfully!";
+        $archive_stmt->close();
     } else {
-        $_SESSION['error_message'] = "Error deleting product.";
+        $_SESSION['error_message'] = "Product not found.";
     }
-    $delete_stmt->close();
     
     header("Location: admin_dashboard.php");
     exit();
@@ -84,18 +115,6 @@ $products_result = $conn->query($products_query);
                 <a href="admin_dashboard.php" class="sidebar-link active">
                     <span class="link-icon">📦</span>
                     <span>Products</span>
-                </a>
-                <a href="#" class="sidebar-link">
-                    <span class="link-icon">🛒</span>
-                    <span>Orders</span>
-                </a>
-                <a href="#" class="sidebar-link">
-                    <span class="link-icon">👥</span>
-                    <span>Customers</span>
-                </a>
-                <a href="#" class="sidebar-link">
-                    <span class="link-icon">📊</span>
-                    <span>Analytics</span>
                 </a>
             </nav>
         </aside>
