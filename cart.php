@@ -88,9 +88,9 @@ foreach ($cart_items as $item) {
                     <span>Total</span>
                     <span id="grandTotal">$<?php echo number_format($total + 2.50, 2); ?></span>
                 </div>
-                <button class="checkout-button" onclick="alert('Checkout feature coming soon!')">
+                <a href="checkout.php" class="checkout-button">
                     Proceed to Checkout
-                </button>
+                </a>
             </div>
         <?php endif; ?>
     </div>

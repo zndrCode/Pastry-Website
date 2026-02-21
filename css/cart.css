@@ -179,6 +179,7 @@
 
 /* ===== CHECKOUT BUTTON ===== */
 .checkout-button {
+    display: block;
     width: 100%;
     padding: 20px;
     background-color: var(--color-primary);
@@ -187,11 +188,14 @@
     border-radius: 12px;
     font-size: 1.15rem;
     font-weight: 700;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
     margin-top: 25px;
     transition: all 0.3s;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .checkout-button:hover {

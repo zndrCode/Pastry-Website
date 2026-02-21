@@ -36,9 +36,11 @@ unset($_SESSION['error']);
             <div class="admin-header">
                 <div class="admin-icon">🔐</div>
                 <h1 class="admin-title">Admin Portal</h1>
+                <div class="admin-divider"></div>
                 <p class="admin-subtitle">Loafly Management System</p>
             </div>
-            
+
+            <div class="admin-form-panel">
             <?php if ($error): ?>
                 <div class="alert alert-error">
                     <strong>⚠️ Access Denied</strong><br>
@@ -92,6 +94,7 @@ unset($_SESSION['error']);
                     Customer? <a href="login.php">Login here</a>
                 </p>
             </div>
+            </div><!-- /admin-form-panel -->
         </div>
         
         <!-- Footer Info -->
