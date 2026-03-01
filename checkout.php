@@ -71,14 +71,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/checkout.css">
 </head>
-<body>
+<body class="dashboard-body">
 
     <!-- Header -->
-    <header class="landing-header">
-        <a href="dashboard.php" class="logo">Loafly</a>
-        <div class="header-actions">
-            <span class="user-greeting">Hi, <?php echo htmlspecialchars($user_name); ?></span>
-            <a href="cart.php" class="logout-link">← Back to Cart</a>
+    <header class="dash-header">
+        <a href="dashboard.php" class="logo dash-logo">Loafly</a>
+        <nav class="dash-nav">
+            <a href="dashboard.php" class="dash-nav-link">Menu</a>
+        </nav>
+        <div class="dash-actions">
+            <span class="dash-greeting">Hi, <?php echo htmlspecialchars($user_name); ?></span>
+            <a href="cart.php" class="dash-logout">← Back to Cart</a>
         </div>
     </header>
 
@@ -93,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span>Order Total</span>
                 <strong>$<?php echo number_format($total, 2); ?></strong>
             </div>
-            <a href="dashboard.php" class="hero-cta success-cta">Back to Menu</a>
+            <a href="dashboard.php" class="success-cta">Back to Menu</a>
         </div>
     </div>
 

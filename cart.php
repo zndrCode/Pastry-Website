@@ -33,12 +33,15 @@ foreach ($cart_items as $item) {
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/cart.css">
 </head>
-<body>
-    <header class="landing-header">
-        <h1 class="logo">Loafly</h1>
-        <div class="header-actions">
-            <span class="user-greeting">Hi, <?php echo htmlspecialchars($user_name); ?>!</span>
-            <a href="dashboard.php" class="logout-link">Continue Shopping</a>
+<body class="dashboard-body">
+    <header class="dash-header">
+        <a href="dashboard.php" class="logo dash-logo">Loafly</a>
+        <nav class="dash-nav">
+            <a href="dashboard.php" class="dash-nav-link">Menu</a>
+        </nav>
+        <div class="dash-actions">
+            <span class="dash-greeting">Hi, <?php echo htmlspecialchars($user_name); ?></span>
+            <a href="dashboard.php" class="dash-logout">Continue Shopping</a>
         </div>
     </header>
     
@@ -52,7 +55,7 @@ foreach ($cart_items as $item) {
         <?php if (empty($cart_items)): ?>
             <div class="cart-empty">
                 <p>Your cart is empty</p>
-                <a href="dashboard.php" class="hero-cta">Browse Menu</a>
+                <a href="dashboard.php" class="btn-primary">Browse Menu</a>
             </div>
         <?php else: ?>
             <div class="cart-items" id="cartItems">
